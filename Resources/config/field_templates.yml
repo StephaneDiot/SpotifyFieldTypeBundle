@@ -1,0 +1,11 @@
+system:
+    default:
+        fielddefinition_settings_templates:
+            -
+                template: "SpotifyFieldTypeBundle::fielddefinition_settings.html.twig"
+        field_templates:
+            -
+                template: "SpotifyFieldTypeBundle::ezspotify_content_field.html.twig"
+        fielddefinition_edit_templates:
+            -
+                template: "SpotifyFieldTypeBundle::ezspotify_field_type.html.twig"

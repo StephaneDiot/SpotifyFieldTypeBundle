@@ -1,0 +1,39 @@
+{% extends '@EzPublishCore/content_fields.html.twig' %}
+
+{% block ezspotify_field %}
+    {% spaceless %}
+        {% set field_value %}
+            {% if field.value.contents is not empty %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2>Suggested Playlist: {{ field.value.contents.name }}</h2>
+                    <div><img alt="{{ field.value.contents.name }}" width="300" height="300" src="{{ field.value.contents.image }}" /></div>
+                    <p>Followers:{{ field.value.contents.followers }}</p>
+                    <a target="_blank" title="{{ field.value.contents.name }}" href="{{ field.value.contents.link }}" ><button type="button" class="btn btn-success">Get Playlist</button></a>
+                    <hr>
+                    <ul class="list-group">
+                        {% for item in field.value.contents.tracks %}
+
+
+                            <li class="list-group-item">
+                                {% if item.track.album.images.2.url is defined %}
+                                    <img src="{{ item.track.album.images.2.url }}" />
+                                {% endif %}
+                                Song:{{ item.track.name}} |
+
+                                {% for artist in item.track.artists %}
+                                    Artists:{{ artist.name }}
+                                {% endfor %}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a target="_blank" title="{{ field.value.contents.name }}" href="{{ field.value.contents.link }}" ><button type="button" class="btn btn-success">Get Playlist</button></a>
+
+                </div>
+            </div>
+            {% endif %}
+        {% endset %}
+        {{ block( 'simple_block_field' ) }}
+    {% endspaceless %}
+{% endblock %}

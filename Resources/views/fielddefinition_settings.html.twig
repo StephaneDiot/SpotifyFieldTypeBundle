@@ -1,0 +1,10 @@
+{% trans_default_domain "fielddefinition" %}
+
+{% block ezspotify_settings %}
+    <ul class="ez-fielddefinition-settings ez-fielddefinition-{{ fielddefinition.fieldTypeIdentifier }}-settings">
+        {% set defaultValue = fielddefinition.defaultValue.url %}
+        {{ block( 'settings_defaultvalue' ) }}
+
+    </ul>
+    <img src="bundles/spotifyfieldtype/images/spotify.png" width="50" align="left">
+{% endblock %}

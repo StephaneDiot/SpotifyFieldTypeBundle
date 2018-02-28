@@ -1,0 +1,25 @@
+imports:
+    - fieldtypes.yml
+parameters:
+    spotify_field_type.spotify.client.class: SpotifyFieldTypeBundle\Spotify\SpotifyClient
+    spotify_field_type.fieldType.ezspotify.class: SpotifyFieldTypeBundle\eZ\Publish\FieldType\Spotify\Type
+    spotify_field_type.fieldType.ezspotify.converter.class: SpotifyFieldTypeBundle\eZ\Publish\FieldType\Spotify\LegacyConverter
+
+
+    # add prefix Bearer<space> to the token string
+    Token: 'Bearer BQDEByZFY9cT_7We-cZjH3-uw_6GXh-6Cm1Iqn8lXJneweM6hToLqTACwNGnBZWz-gkq1OTQvRtW1Nvp6qNq37yIDs9venxn9FrsF2bwT9XnIqAa5O9ymcBG6xqwzgMfcKoZ-D_U9nWGjLg'
+services:
+    spotify_field_type.spotify.client:
+        class: %spotify_field_type.spotify.client.class%
+        arguments: [%Token%]
+
+    spotify_field_type.fieldType.ezspotify:
+        parent: ezpublish.fieldType
+        class: %spotify_field_type.fieldType.ezspotify.class%
+        tags:
+            - {name: ezpublish.fieldType, alias: ezspotify}
+        arguments: ['@spotify_field_type.spotify.client']
+    spotify_field_type.fieldType.ezspotify.converter:
+        class: %spotify_field_type.fieldType.ezspotify.converter.class%
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: ezspotify}

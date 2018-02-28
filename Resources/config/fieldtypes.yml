@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SpotifyFieldTypeBundle\Form\Type\FieldType\SpotifyFieldType: ~
+
+    SpotifyFieldTypeBundle\FieldType\Mapper\SpotifyFormMapper:
+        tags:
+            - { name: ez.fieldFormMapper.definition, fieldType: ezspotify }
+            - { name: ez.fieldFormMapper.value, fieldType: ezspotify }
